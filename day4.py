@@ -47,7 +47,7 @@ for i in callouts:
 
     while j < len(bingocards):
         
-        if i in bingocards[j]:
+        if i in bingocards[j] and bingochecks[j][-1] == 0:
             
             a = bingocards[j][i][0]
             b = bingocards[j][i][1]
@@ -55,8 +55,18 @@ for i in callouts:
             bingochecks[j][a-1] += 1
             bingochecks[j][b+4] += 1
             
-            if max(bingochecks[j]) == 5 and bingochecks[j][-1] == 0:
+            if max(bingochecks[j]) == 5:
+                
+                ##### PART 1 #####
 
+                # print(j, "is winner")
+                # windex = j
+                # winnum = i
+                # winner = True
+                # break
+
+                ##### PART 2 #####
+                
                 bingochecks[j][-1] = 1
                 complete += 1
                 
@@ -67,11 +77,6 @@ for i in callouts:
                     winnum = i
                     winner = True
                     break
-
-                # else:
-
-                #     bingochecks.remove(bingochecks[j])
-                #     bingocards.remove(bingocards[j])
         
         j += 1
     
