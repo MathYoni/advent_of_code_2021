@@ -12,73 +12,30 @@ for i in r:
 vents = {}
 
 for i in s:
+    
+    delta = abs(i[1][0] - i[0][0]) + abs(i[1][1] - i[0][1]) 
+    dx = (i[1][0] - i[0][0]) / delta
+    dy = (i[1][1] - i[0][1]) / delta
 
-    if i[0][0] == i[1][0]:
+    if dx != 0 and dy != 0:
 
-        large = max(i[0][1], i[1][1])
-        small = min(i[0][1], i[1][1])
+        #continue #(Part 1)
+        dx = 2*dx
+        dy = 2*dy
+        delta = int(delta/2)
 
-        for j in range(small, large + 1):
+    for j in range(delta + 1):
 
-            if (i[0][0], j) not in vents:
+        a = j*dx
+        b = j*dy
 
-                vents[(i[0][0], j)] = 1
+        if (i[0][0] + a, i[0][1] + b) not in vents:
 
-            else:
+            vents[(i[0][0] + a, i[0][1] + b)] = 1
 
-                vents[(i[0][0], j)] += 1
+        else:
 
-    elif i[0][1] == i[1][1]:
-
-        large = max(i[0][0], i[1][0])
-        small = min(i[0][0], i[1][0])
-
-        for j in range(small, large + 1):
-
-            if (j, i[0][1]) not in vents:
-
-                vents[(j, i[0][1])] = 1
-
-            else:
-
-                vents[(j, i[0][1])] += 1  
-
-    else:
-
-        # continue (Part 1)
-
-        xchange = i[1][0] - i[0][0]
-        ychange = i[1][1] - i[0][1]
-
-        smallx = min(i[0][0], i[1][0])
-        largex = max(i[0][0], i[1][0])
-        smally = min(i[0][1], i[1][1])
-        largey = max(i[0][1], i[1][1])
-
-
-        if ychange / xchange == 1:
-
-            for j in range(abs(xchange) + 1):
-
-                if (smallx + j, smally + j) not in vents:
-
-                    vents[(smallx + j, smally + j)] = 1
-
-                else:
-
-                    vents[(smallx + j, smally + j)] += 1   
-
-        else:   
-                        
-            for j in range(abs(xchange) + 1):
-
-                if (smallx + j, largey - j) not in vents:
-
-                    vents[(smallx + j, largey - j)] = 1
-
-                else:
-
-                    vents[(smallx + j, largey - j)] += 1 
+            vents[(i[0][0] + a, i[0][1] + b)] += 1
 
 
 
