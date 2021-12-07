@@ -1,15 +1,13 @@
+import re
 f = open("day5.txt")
 r = f.read().splitlines()
 s = []
 
 for i in r:
 
-    a = i.split(" -> ")
-    b = a[0].split(",")
-    c = a[1].split(",")
-    coords = [[int(b[0]), int(b[1])], [int(c[0]), int(c[1])]]
-
-    s.append(coords)
+    m = re.search(r'(\d+),(\d+) -> (\d+),(\d+)', i)
+    l = [[int(m.group(1)), int(m.group(2))], [int(m.group(3)), int(m.group(4))]]
+    s.append(l)
 
 vents = {}
 
